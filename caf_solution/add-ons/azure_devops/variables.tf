@@ -100,3 +100,6 @@ variable "azuread_apps" {
 variable "dynamic_keyvault_secrets" {
   default = {}
 }
+variable "azuread" {
+  default = {}
+}

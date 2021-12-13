@@ -1,6 +1,15 @@
+locals {
+  azuread = merge(
+    var.azuread,
+    {
+      azuread_apps                        = var.azuread_apps
+      azuread_groups                      = var.azuread_groups
+    }
+  )
+}
 module "caf" {
   source  = "aztfmod/caf/azurerm"
-  version = "~>5.3.0"
+  version = "~>5.4.2"
 
   current_landingzone_key               = var.landingzone.key
   tenant_id                             = var.tenant_id
@@ -13,13 +22,12 @@ module "caf" {
   logged_aad_app_objectId               = var.logged_aad_app_objectId
   resource_groups                       = var.resource_groups
   storage_accounts                      = var.storage_accounts
-  azuread_groups                        = var.azuread_groups
+  azuread                               = local.azuread
   keyvaults                             = var.keyvaults
   keyvault_access_policies              = var.keyvault_access_policies
   keyvault_access_policies_azuread_apps = var.keyvault_access_policies_azuread_apps
   role_mapping                          = var.role_mapping
   custom_role_definitions               = var.custom_role_definitions
-  azuread_apps                          = var.azuread_apps
   compute = {
     virtual_machines = var.virtual_machines
   }
