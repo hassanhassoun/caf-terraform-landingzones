@@ -9,5 +9,6 @@ module "dynamic_keyvault_secrets" {
 
   settings = each.value
   keyvault = module.launchpad.keyvaults[each.key]
-  objects  = module.launchpad
+  objects  = merge(module.launchpad, 
+                   { "subscriptions" =  { for sub in data.azurerm_subscriptions.available.subscriptions : sub.display_name => { ("subscription-id") = sub.subscription_id } }})
 }
