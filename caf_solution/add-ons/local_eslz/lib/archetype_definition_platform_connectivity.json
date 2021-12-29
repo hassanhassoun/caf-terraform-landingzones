@@ -1,0 +1,27 @@
+{
+  "platform_connectivity": {
+    "policy_assignments": ["SQL_TLS_version", "Enable-DDoS-VNET", "Deny-Resource-Locations", "Deny-RSG-Locations"],
+    "policy_definitions": [],
+    "policy_set_definitions": [],
+    "role_definitions": [],
+    "archetype_config": {
+      "parameters": {
+        "Deny-Resource-Locations": {
+          "listOfAllowedLocations": [
+            "eastus",
+            "canadacentral",
+            "southcentralus"
+          ]
+        },
+        "Deny-RSG-Locations": {
+          "listOfAllowedLocations": [
+            "eastus",
+            "canadacentral",
+            "canadaeast"
+          ]
+        }
+      },
+      "access_control": {}
+    }
+  }
+}

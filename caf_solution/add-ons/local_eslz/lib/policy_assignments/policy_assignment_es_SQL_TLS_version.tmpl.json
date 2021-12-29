@@ -1,0 +1,18 @@
+{
+  "name": "SQL_TLS_version",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "SQL_managed_instances_deploy_a_specific_min_TLS_version_requirement",
+    "displayName": "SQL_managed_instances_deploy_a_specific_min_TLS_version_requirement",
+    "notScopes": [],
+    "parameters": {},
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-SqlMi-minTLS",
+    "scope": "${current_scope_resource_id}",
+    "enforcementMode": "Default"
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "SystemAssigned"
+ }
+}
