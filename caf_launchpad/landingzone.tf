@@ -1,9 +1,14 @@
 module "launchpad" {
   source  = "aztfmod/caf/azurerm"
-  version = "~>5.4.2"
+  version = "~>5.5.0"
 
-  # source = "git::https://github.com/aztfmod/terraform-azurerm-caf.git?ref=patch.5.4.6"
-  # source = "../../aztfmod"
+
+  # source = "git::https://github.com/aztfmod/terraform-azurerm-caf.git?ref=master"
+  #source = "../../aztfmod"
+
+  providers = {
+    azurerm.vhub = azurerm
+  }
 
   current_landingzone_key               = var.landingzone.key
   custom_role_definitions               = var.custom_role_definitions

@@ -23,7 +23,7 @@ terraform {
       version = "~>1.2.0"
     }
   }
-  required_version = ">= 0.13"
+  required_version = ">= 0.15"
 }
 
 
@@ -35,6 +35,14 @@ provider "azurerm" {
       purge_soft_delete_on_destroy = var.provider_azurerm_features_keyvault.purge_soft_delete_on_destroy
     }
   }
+}
+
+provider "azurerm" {
+  alias                      = "vhub"
+  skip_provider_registration = true
+  features {}
+  subscription_id = local.connectivity_subscription_id
+  tenant_id       = local.connectivity_tenant_id
 }
 
 data "azurerm_client_config" "current" {}
@@ -67,3 +75,4 @@ locals {
   }
 
 }
+
