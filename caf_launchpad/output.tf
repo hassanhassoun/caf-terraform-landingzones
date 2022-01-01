@@ -1,10 +1,10 @@
-
 output "objects" {
   value = tomap(
-    { (var.landingzone.key) = {
+    { (var.landingzone.key) = merge( {
       for key, value in module.launchpad : key => value
       if try(value, {}) != {}
-      }
+      },
+      { "subscriptions"  =  { for sub in data.azurerm_subscriptions.available.subscriptions : sub.display_name => { ("subscription_id") = replace(sub.id, "/.subscriptions./","") } }})
     }
   )
   sensitive = true
