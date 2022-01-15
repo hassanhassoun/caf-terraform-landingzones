@@ -9,7 +9,11 @@ locals {
 }
 module "caf" {
   source  = "aztfmod/caf/azurerm"
-  version = "~>5.4.2"
+  version = "~>5.5.0"
+
+  providers = {
+    azurerm.vhub = azurerm
+  }
 
   current_landingzone_key               = var.landingzone.key
   tenant_id                             = var.tenant_id

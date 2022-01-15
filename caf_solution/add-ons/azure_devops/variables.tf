@@ -103,3 +103,6 @@ variable "dynamic_keyvault_secrets" {
 variable "azuread" {
   default = {}
 }
+variable "global_prefix_passthrough" {
+  default = false
+}
