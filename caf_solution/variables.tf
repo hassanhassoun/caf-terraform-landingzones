@@ -243,3 +243,6 @@ variable "propagate_launchpad_identities" {
 variable "random_strings" {
   default = {}
 }
+variable "remote_data" {
+  default = {}
+}

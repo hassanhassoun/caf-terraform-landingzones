@@ -187,9 +187,10 @@ locals {
     servicebus_queues = {
       for key, value in try(var.landingzone.tfstates, {}) : key => merge(try(data.terraform_remote_state.remote[key].outputs.objects[key].servicebus_queues, {}))
     }
-    storage_accounts = {
-      for key, value in try(var.landingzone.tfstates, {}) : key => merge(try(data.terraform_remote_state.remote[key].outputs.objects[key].storage_accounts, {}))
-    }
+    storage_accounts = merge(
+        { for key, value in try(var.landingzone.tfstates, {}) : key => merge(try(data.terraform_remote_state.remote[key].outputs.objects[key].storage_accounts, {}))},
+        { for key, value in try(var.remote_data.storage_accounts, {}) :  "seed" => merge(try(data.azurerm_storage_account.remote_data, {})) }
+    )
     storage_containers = {
       for key, value in try(var.landingzone.tfstates, {}) : key => merge(try(data.terraform_remote_state.remote[key].outputs.objects[key].storage_containers, {}))
     }
