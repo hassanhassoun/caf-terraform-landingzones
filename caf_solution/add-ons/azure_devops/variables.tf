@@ -106,3 +106,6 @@ variable "azuread" {
 variable "global_prefix_passthrough" {
   default = false
 }
+variable "groups" {
+  default = {}
+}

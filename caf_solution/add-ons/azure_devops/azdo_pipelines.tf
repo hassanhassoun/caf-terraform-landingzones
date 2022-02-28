@@ -28,7 +28,26 @@ resource "azuredevops_build_definition" "build_definition" {
   }
 
   ci_trigger {
-    use_yaml = true
+    use_yaml = null
+    override {
+        batch  = try(each.value.override.batch, false)
+        max_concurrent_builds_per_branch  = try(each.value.override.max_concurrent_builds_per_branch, 1)
+        polling_interval  = try(each.value.override.polling_interval, 0)
+        dynamic "branch_filter" {
+          for_each = try(each.value.override.branch_filter, {})
+          content {
+            include  = try(branch_filter.value.include, [])
+            exclude  = try(branch_filter.value.exclude, [])
+          }
+        }
+        dynamic "path_filter" {
+          for_each = try(each.value.override.path_filter, {})
+          content {
+            include  = try(path_filter.value.include, [])
+            exclude  = try(path_filter.value.exclude, [])
+          }
+        }
+    }
   }
 
   dynamic "variable" {
