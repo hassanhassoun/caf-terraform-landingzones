@@ -39,7 +39,7 @@ jobs:
           random_length: ['5']
 
     container:
-      image: aztfmod/rover:1.0.11-2112.0809
+      image: aztfmod/rover:1.1.7-2203.2311
       options: --user 0
 
     steps:
@@ -66,7 +66,7 @@ jobs:
 
       - name: foundations
         run: |
-          sleep 120
+          sleep 180
           /tf/rover/rover.sh -lz ${GITHUB_WORKSPACE}/caf_solution -a apply \
             -var-folder ${GITHUB_WORKSPACE}/caf_solution/scenario/foundations/100-passthrough \
             -tfstate caf_foundations.tfstate \
@@ -92,7 +92,7 @@ jobs:
           ]
 
     container:
-      image: aztfmod/rover:1.0.11-2112.0809
+      image: aztfmod/rover:1.1.7-2203.2311
       options: --user 0
 
     steps:
@@ -135,7 +135,7 @@ jobs:
           random_length: ['5']
 
     container:
-      image: aztfmod/rover:1.0.11-2112.0809
+      image: aztfmod/rover:1.1.7-2203.2311
       options: --user 0
 
     steps:
@@ -186,7 +186,7 @@ jobs:
           ]
 
     container:
-      image: aztfmod/rover:1.0.11-2112.0809
+      image: aztfmod/rover:1.1.7-2203.2311
       options: --user 0
 
     steps:
@@ -228,7 +228,7 @@ jobs:
         random_length: ['5']
 
     container:
-      image: aztfmod/rover:1.0.11-2112.0809
+      image: aztfmod/rover:1.1.7-2203.2311
       options: --user 0
 
     steps:

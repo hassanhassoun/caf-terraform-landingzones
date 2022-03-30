@@ -41,7 +41,7 @@ variable "regions" {
   type        = map(any)
   description = "List of the regions where services can be deployed. This impact the diagnostics logs settings"
   default = {
-    region1 = "southeastasia"
+    region1 = "australiaeast"
   }
 }
 
@@ -235,4 +235,12 @@ variable "route_tables" {
 
 variable "propagate_launchpad_identities" {
   default = false
+}
+
+variable "container_groups" {
+  default = {}
+}
+
+variable "network_profiles" {
+  default = {}
 }

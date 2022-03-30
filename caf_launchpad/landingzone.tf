@@ -1,10 +1,10 @@
 module "launchpad" {
   source  = "aztfmod/caf/azurerm"
-  version = "~>5.5.0"
+  version = "5.5.5"
 
-
-  # source = "git::https://github.com/aztfmod/terraform-azurerm-caf.git?ref=master"
-  #source = "../../aztfmod"
+  # during dev cycles for the module, you can pick dev branches from GitHub, or from a local fork
+  # source = "git::https://github.com/aztfmod/terraform-azurerm-caf.git?ref=main"
+  # source = "../../aztfmod"
 
   providers = {
     azurerm.vhub = azurerm
@@ -53,16 +53,18 @@ module "launchpad" {
   }
 
   compute = {
-    virtual_machines = try(var.compute.virtual_machines, var.virtual_machines)
     bastion_hosts    = try(var.compute.bastion_hosts, var.bastion_hosts)
+    container_groups = var.container_groups
+    virtual_machines = try(var.compute.virtual_machines, var.virtual_machines)
   }
 
   networking = {
-    vnets                             = try(var.networking.vnets, var.vnets)
+    azurerm_routes                    = try(var.networking.azurerm_routes, var.azurerm_routes)
+    network_profiles                  = var.network_profiles
     network_security_group_definition = try(var.networking.network_security_group_definition, var.network_security_group_definition)
     public_ip_addresses               = try(var.networking.public_ip_addresses, var.public_ip_addresses)
-    azurerm_routes                    = try(var.networking.azurerm_routes, var.azurerm_routes)
     route_tables                      = try(var.networking.route_tables, var.route_tables)
+    vnets                             = try(var.networking.vnets, var.vnets)
   }
 
   security = {
